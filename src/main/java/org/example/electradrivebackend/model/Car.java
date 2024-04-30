@@ -1,31 +1,51 @@
 package org.example.electradrivebackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.example.electradrivebackend.dto.SalesDto;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
-@ToString
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "cars")
 public class Car {
-
 
     @Id
     private UUID carId;
     private String type;
     private String color;
-    private String battery;
-    private boolean hitch;
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Part> parts = new HashSet<>();
 
     public Car(SalesDto salesDto) {
         this.carId = salesDto.getCarId();
         this.type = salesDto.getCarType();
         this.color = salesDto.getCarColor();
-        this.battery = salesDto.getCarBattery();
-        this.hitch = salesDto.isCarHitch();
+
+        // Convert battery information into a part
+        if (salesDto.getCarBattery() != null && !salesDto.getCarBattery().isEmpty()) {
+            Part battery = new Part();
+            battery.setName("Battery");
+            battery.setDescription(salesDto.getCarBattery());
+            battery.setCar(this);
+            this.parts.add(battery);
+        }
+
+        // Convert hitch information into a part
+        if (salesDto.isCarHitch()) {
+            Part hitch = new Part();
+            hitch.setName("Hitch");
+            hitch.setDescription("Hitch equipped");
+            hitch.setCar(this);
+            this.parts.add(hitch);
+        }
     }
 }
+
