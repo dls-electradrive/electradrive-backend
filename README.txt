@@ -13,3 +13,12 @@ Vær opmærksom på hvis noget crasher kan den muligvis være sønderen.
 Database url skal sættes med database og schema, ligesom: localhost:3306/electradrive.
 
 Husk at sæt RabbitMQ og Mysql env variabler. Tjek application.properties.
+
+
+
+#SKAL KONVENTERES TIL DETTE NÅR VI HAR FORBINDELSEN SAT OP:
+## RabbitMQ properties
+#spring.rabbitmq.host=${RABBITMQ_HOST}
+#spring.rabbitmq.port=${RABBITMQ_PORT}
+#spring.rabbitmq.username=${RABBITMQ_USERNAME}
+#spring.rabbitmq.password=${RABBITMQ_PASSWORD}

@@ -1,13 +1,20 @@
 package org.example.electradrivebackend.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.example.electradrivebackend.dto.SalesDto;
 
 import java.util.UUID;
 @ToString
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Entity
+@Table(name = "cars")
 public class Car {
 
+
+    @Id
     private UUID carId;
     private String type;
     private String color;
