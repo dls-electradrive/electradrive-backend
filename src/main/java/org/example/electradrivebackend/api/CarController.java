@@ -19,6 +19,7 @@ public class CarController {
 
     @GetMapping("/")
     public Flux<CarResponse> getAllCars() {
+        System.out.println("Trying to get all cars. Endpoint hit in CarController.");
         return carService.getAllCars();
     }
 }

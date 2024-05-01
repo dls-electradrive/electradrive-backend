@@ -25,6 +25,7 @@ public class SalesController {
 
     @PostMapping("/submit")
     public ResponseEntity<String> handleFormSubmission(@RequestBody SalesDto salesDto) {
+        System.out.println("Trying to save salesobject. Endpoint hit in SalesController.");
         // Create Customer and Car objects from SalesDto and pass them to service layer
         System.out.println(salesDto);
         Customer customer = new Customer(salesDto);
