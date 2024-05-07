@@ -12,7 +12,7 @@ public class SalesDto {
     private String customerName;
     private String customerEmail;
     private String customerAddress;
-    private UUID carId;
+    private String carId;
     private String carType;
     private String carColor;
     private String carBattery;

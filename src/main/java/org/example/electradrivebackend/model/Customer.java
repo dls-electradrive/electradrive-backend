@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 import java.util.UUID;
 @ToString
 @Entity
-@Table(name = "customers")
+@Table(name = "customer", schema = "electradrive")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Customer {
 
@@ -17,7 +17,7 @@ public class Customer {
     private String name;
     private String email;
     private String address;
-    private UUID carId;
+    private String carId;
 
     public Customer(SalesDto salesDto) {
         this.customerId = salesDto.getCustomerId();

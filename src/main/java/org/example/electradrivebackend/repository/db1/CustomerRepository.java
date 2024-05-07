@@ -1,4 +1,4 @@
-package org.example.electradrivebackend.repository;
+package org.example.electradrivebackend.repository.db1;
 
 import org.example.electradrivebackend.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

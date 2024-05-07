@@ -11,20 +11,21 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "parts")
+@Table(name = "part")
 public class Part {
 
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(updatable = false, nullable = false)
-    private UUID id;
+    @Column(updatable = false, nullable = false, name = "Id")
+
+    private UUID Id;
 
     private String name;
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "car_id")
+    @JoinColumn(name = "carId")
     private Car car;
 }
 

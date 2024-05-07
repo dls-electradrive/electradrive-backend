@@ -1,7 +1,7 @@
 package org.example.electradrivebackend.service;
 
 import org.example.electradrivebackend.model.Customer;
-import org.example.electradrivebackend.repository.CustomerRepository;
+import org.example.electradrivebackend.repository.db1.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
