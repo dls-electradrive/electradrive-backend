@@ -1,4 +1,4 @@
-package org.example.electradrivebackend.model.m2;
+package org.example.electradrivebackend.model.carmodel;
 
 import jakarta.persistence.*;
 import lombok.*;

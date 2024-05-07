@@ -1,9 +1,8 @@
-package org.example.electradrivebackend.repository.db2;
+package org.example.electradrivebackend.repository.carrepo;
 
-import org.example.electradrivebackend.model.m2.Car;
+import org.example.electradrivebackend.model.carmodel.Car;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

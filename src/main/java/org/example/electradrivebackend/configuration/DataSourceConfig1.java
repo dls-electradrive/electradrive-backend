@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManagerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -20,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "org.example.electradrivebackend.repository.db1",
+        basePackages = "org.example.electradrivebackend.repository.customerrepo",
         entityManagerFactoryRef = "entityManagerFactory1",
         transactionManagerRef = "transactionManager1"
 )
@@ -44,7 +43,7 @@ public class DataSourceConfig1 {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory1(DataSource dataSource1) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource1);
-        em.setPackagesToScan("org.example.electradrivebackend.model.m1");
+        em.setPackagesToScan("org.example.electradrivebackend.model.customermodel");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

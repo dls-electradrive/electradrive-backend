@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "org.example.electradrivebackend.repository.db2",
+        basePackages = "org.example.electradrivebackend.repository.carrepo",
         entityManagerFactoryRef = "entityManagerFactory2",
         transactionManagerRef = "transactionManager2"
 )
@@ -41,7 +41,7 @@ public class DataSourceConfig2 {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory2(DataSource dataSource2) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource2);
-        em.setPackagesToScan("org.example.electradrivebackend.model.m2");
+        em.setPackagesToScan("org.example.electradrivebackend.model.carmodel");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

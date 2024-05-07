@@ -1,8 +1,8 @@
 package org.example.electradrivebackend.dto;
 
 import lombok.*;
-import org.example.electradrivebackend.model.m2.Car;
-import org.example.electradrivebackend.model.m2.Part;
+import org.example.electradrivebackend.model.carmodel.Car;
+import org.example.electradrivebackend.model.carmodel.Part;
 
 @Getter
 @Setter

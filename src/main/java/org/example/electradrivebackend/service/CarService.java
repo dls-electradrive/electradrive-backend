@@ -1,8 +1,8 @@
 package org.example.electradrivebackend.service;
 
 import org.example.electradrivebackend.dto.CarResponse;
-import org.example.electradrivebackend.model.m2.Car;
-import org.example.electradrivebackend.repository.db2.CarRepository;
+import org.example.electradrivebackend.model.carmodel.Car;
+import org.example.electradrivebackend.repository.carrepo.CarRepository;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

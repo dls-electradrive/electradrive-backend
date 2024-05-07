@@ -1,4 +1,4 @@
-package org.example.electradrivebackend.model.m1;
+package org.example.electradrivebackend.model.customermodel;
 
 import jakarta.persistence.Column;
 import lombok.*;
@@ -6,7 +6,7 @@ import org.example.electradrivebackend.dto.SalesDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.UUID;
+
 @ToString
 @Entity
 @Table(name = "customers", schema = "electradrive")

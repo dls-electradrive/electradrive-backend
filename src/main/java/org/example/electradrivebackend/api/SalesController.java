@@ -1,8 +1,8 @@
 package org.example.electradrivebackend.api;
 
 import org.example.electradrivebackend.dto.SalesDto;
-import org.example.electradrivebackend.model.m1.Customer;
-import org.example.electradrivebackend.model.m2.Car;
+import org.example.electradrivebackend.model.customermodel.Customer;
+import org.example.electradrivebackend.model.carmodel.Car;
 import org.example.electradrivebackend.service.CarService;
 import org.example.electradrivebackend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,8 @@
-package org.example.electradrivebackend.model.m2;
+package org.example.electradrivebackend.model.carmodel;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-
-import java.util.UUID;
 
 @Getter
 @Setter
