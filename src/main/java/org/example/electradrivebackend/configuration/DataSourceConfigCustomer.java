@@ -20,8 +20,8 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(
         basePackages = "org.example.electradrivebackend.repository.carrepo",
-        entityManagerFactoryRef = "entityManagerFactory2",
-        transactionManagerRef = "transactionManager2"
+        entityManagerFactoryRef = "entityManagerFactoryCustomer",
+        transactionManagerRef = "transactionManagerCustomer"
 )
 public class DataSourceConfigCustomer {
 
@@ -32,7 +32,6 @@ public class DataSourceConfigCustomer {
         config.setJdbcUrl("jdbc:mysql://localhost:3307/carstorage?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         config.setUsername("root");
         config.setPassword("12345");
-        System.out.println("Big burger moment 2");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return new HikariDataSource(config);
     }
@@ -48,7 +47,7 @@ public class DataSourceConfigCustomer {
         return em;
     }
 
-    @Bean(name = "transactionManager2")
+    @Bean(name = "transactionManagerCustomer")
     public PlatformTransactionManager transactionManager2(EntityManagerFactory entityManagerFactory2) {
         return new JpaTransactionManager(entityManagerFactory2);
     }
