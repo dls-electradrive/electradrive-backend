@@ -1,29 +1,31 @@
-package org.example.electradrivebackend.model;
+package org.example.electradrivebackend.model.customermodel;
 
+import jakarta.persistence.Column;
 import lombok.*;
 import org.example.electradrivebackend.dto.SalesDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.UUID;
+
 @ToString
 @Entity
-@Table(name = "customer", schema = "electradrive")
+@Table(name = "customers", schema = "electradrive")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Customer {
 
+    @Column(name = "customer_id")
     @Id
-    private UUID customerId;
+    private String customer_Id;
     private String name;
     private String email;
     private String address;
-    private String carId;
+    private String car_Id;
 
     public Customer(SalesDto salesDto) {
-        this.customerId = salesDto.getCustomerId();
+        this.customer_Id = salesDto.getCustomerId();
         this.name = salesDto.getCustomerName();
         this.email = salesDto.getCustomerEmail();
         this.address = salesDto.getCustomerAddress();
-        this.carId = salesDto.getCarId();
+        this.car_Id = salesDto.getCarId();
     }
 }

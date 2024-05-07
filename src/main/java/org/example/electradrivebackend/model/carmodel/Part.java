@@ -1,31 +1,29 @@
-package org.example.electradrivebackend.model;
+package org.example.electradrivebackend.model.carmodel;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-
-import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "part")
+@Table(name = "Parts")
 public class Part {
 
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(updatable = false, nullable = false, name = "Id")
+    @Column(updatable = false, nullable = false, name = "Part_Id")
 
-    private UUID Id;
+    private String part_id;
 
     private String name;
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "carId")
+    @JoinColumn(name = "car_Id")
     private Car car;
 }
 

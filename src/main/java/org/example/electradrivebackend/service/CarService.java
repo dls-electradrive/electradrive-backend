@@ -1,18 +1,16 @@
 package org.example.electradrivebackend.service;
 
 import org.example.electradrivebackend.dto.CarResponse;
-import org.example.electradrivebackend.model.Car;
-import org.example.electradrivebackend.repository.db2.CarRepository;
+import org.example.electradrivebackend.model.carmodel.Car;
+import org.example.electradrivebackend.repository.carrepo.CarRepository;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.example.electradrivebackend.configuration.RabbitMQConfiguration.EXCHANGE_NAME;
-import static org.example.electradrivebackend.configuration.RabbitMQConfiguration.ROUTING_KEY;
 
 @Service
 public class CarService {
@@ -27,8 +25,9 @@ public class CarService {
     }
 
     public void sendCarDetails(Car car) {
-        rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, car);
+        rabbitTemplate.convertAndSend(EXCHANGE_NAME, "", car);
     }
+
 
     public List<CarResponse> getAllCars() {
         System.out.println();

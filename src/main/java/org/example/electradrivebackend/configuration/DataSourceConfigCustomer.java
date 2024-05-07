@@ -1,9 +1,9 @@
 package org.example.electradrivebackend.configuration;
 
 import jakarta.persistence.EntityManagerFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -19,40 +19,40 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "org.example.electradrivebackend.repository.db1",
-        entityManagerFactoryRef = "entityManagerFactory1",
-        transactionManagerRef = "transactionManager1"
+        basePackages = "org.example.electradrivebackend.repository.customerrepo",
+        entityManagerFactoryRef = "entityManagerFactoryCustomer",
+        transactionManagerRef = "transactionManagerCustomer"
 )
-public class DataSourceConfig1 {
+public class DataSourceConfigCustomer {
 
-    @Primary
-    @Bean(name = "dataSource1")
-    public DataSource dataSource1() {
+
+    @Bean(name = "dataSourceCustomer")
+    @ConfigurationProperties(prefix = "electradrive.datasource")
+    public DataSource dataSourceCustomer() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://localhost:3307/electradrive?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         config.setUsername("root");
         config.setPassword("12345");
-        System.out.println("Big burger moment 1");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return new HikariDataSource(config);
     }
 
-    @Primary
-    @Bean(name = "entityManagerFactory1")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory1(DataSource dataSource1) {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource1);
-        em.setPackagesToScan("org.example.electradrivebackend.model");
 
+    @Bean(name = "entityManagerFactoryCustomer")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryCustomer(DataSource dataSourceCustomer) {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSourceCustomer);
+        em.setPackagesToScan("org.example.electradrivebackend.model.customermodel");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
+        em.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "update");
         return em;
     }
 
-    @Primary
-    @Bean(name = "transactionManager1")
-    public PlatformTransactionManager transactionManager1(EntityManagerFactory entityManagerFactory1) {
-        return new JpaTransactionManager(entityManagerFactory1);
+
+    @Bean(name = "transactionManagerCustomer")
+    public PlatformTransactionManager transactionManagerCustomer(EntityManagerFactory entityManagerFactoryCustomer) {
+        return new JpaTransactionManager(entityManagerFactoryCustomer);
     }
 }
 

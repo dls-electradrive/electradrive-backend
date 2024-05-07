@@ -1,20 +1,18 @@
-package org.example.electradrivebackend.model;
+package org.example.electradrivebackend.model.carmodel;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.electradrivebackend.dto.SalesDto;
 
-import java.text.DateFormat;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cars", schema = "carstorage")
+@Table(name = "Cars", schema = "carstorage")
 public class Car {
 
     @Column(name = "car_id")
@@ -23,15 +21,15 @@ public class Car {
     private String Type;
     private String Color;
 
-    //@OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //private Set<Part> parts = new HashSet<>();
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Part> parts = new HashSet<>();
 
     public Car(SalesDto salesDto) {
         this.car_id = salesDto.getCarId();
         this.Type = salesDto.getCarType();
         this.Color = salesDto.getCarColor();
 
-        /*
+
         // Convert battery information into a part
         if (salesDto.getCarBattery() != null && !salesDto.getCarBattery().isEmpty()) {
             Part battery = new Part();
@@ -49,7 +47,7 @@ public class Car {
             hitch.setCar(this);
             this.parts.add(hitch);
         }
-        */
+
     }
 
 
