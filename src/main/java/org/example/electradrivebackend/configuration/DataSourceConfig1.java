@@ -48,6 +48,7 @@ public class DataSourceConfig1 {
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
+        em.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "update");
         return em;
     }
 

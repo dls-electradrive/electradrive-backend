@@ -25,7 +25,7 @@ public class CarService {
     }
 
     public void sendCarDetails(Car car) {
-        rabbitTemplate.convertAndSend(EXCHANGE_NAME, car);
+        rabbitTemplate.convertAndSend(EXCHANGE_NAME, "", car);
     }
 
 

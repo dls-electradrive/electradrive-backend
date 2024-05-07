@@ -2,6 +2,7 @@ package org.example.electradrivebackend.dto;
 
 import lombok.*;
 import org.example.electradrivebackend.model.m2.Car;
+import org.example.electradrivebackend.model.m2.Part;
 
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class CarResponse {
         this.Id = car.getCar_id();
         this.type = car.getType();
         this.color = car.getColor();
-        /*
+
         this.battery = car.getParts().stream()
                 .filter(part -> "Battery".equals(part.getName()))
                 .findFirst()
@@ -28,7 +29,7 @@ public class CarResponse {
                 .orElse(null);
         this.hitch = car.getParts().stream()
                 .anyMatch(part -> "Hitch".equals(part.getName()));
-                  */
+
     }
 
 

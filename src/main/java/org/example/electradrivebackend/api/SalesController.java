@@ -33,7 +33,7 @@ public class SalesController {
 
         System.out.println(car.toString());
         System.out.println(customer.toString());
-        carService.sendCarDetails(car);
+        //carService.sendCarDetails(car);
         customerService.saveCustomer(customer);
         return ResponseEntity.ok("Form data submitted successfully");
     }
