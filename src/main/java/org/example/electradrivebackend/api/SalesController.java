@@ -1,8 +1,8 @@
 package org.example.electradrivebackend.api;
 
 import org.example.electradrivebackend.dto.SalesDto;
-import org.example.electradrivebackend.model.Customer;
-import org.example.electradrivebackend.model.Car;
+import org.example.electradrivebackend.model.m1.Customer;
+import org.example.electradrivebackend.model.m2.Car;
 import org.example.electradrivebackend.service.CarService;
 import org.example.electradrivebackend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class SalesController {
 
         System.out.println(car.toString());
         System.out.println(customer.toString());
-        //carService.sendCarDetails(car);
+        carService.sendCarDetails(car);
         customerService.saveCustomer(customer);
         return ResponseEntity.ok("Form data submitted successfully");
     }

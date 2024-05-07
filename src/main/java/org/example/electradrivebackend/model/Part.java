@@ -2,6 +2,7 @@ package org.example.electradrivebackend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.electradrivebackend.model.m2.Car;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;

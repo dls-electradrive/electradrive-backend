@@ -8,7 +8,7 @@ import java.util.UUID;
 @ToString
 @Getter @Setter
 public class SalesDto {
-    private UUID customerId;
+    private String customerId;
     private String customerName;
     private String customerEmail;
     private String customerAddress;

@@ -1,6 +1,7 @@
 package org.example.electradrivebackend.configuration;
 
 import jakarta.persistence.EntityManagerFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -24,6 +25,7 @@ import javax.sql.DataSource;
 )
 public class DataSourceConfig2 {
 
+    @ConfigurationProperties(prefix = "carstorage.datasource")
     @Bean(name = "dataSource2")
     public DataSource dataSource2() {
         HikariConfig config = new HikariConfig();
@@ -39,7 +41,7 @@ public class DataSourceConfig2 {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory2(DataSource dataSource2) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource2);
-        em.setPackagesToScan("org.example.electradrivebackend.model");
+        em.setPackagesToScan("org.example.electradrivebackend.model.m2");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

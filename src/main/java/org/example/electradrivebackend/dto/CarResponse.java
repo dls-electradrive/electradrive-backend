@@ -1,11 +1,7 @@
 package org.example.electradrivebackend.dto;
 
 import lombok.*;
-import org.example.electradrivebackend.model.Car;
-import org.example.electradrivebackend.model.Part;
-
-import java.util.UUID;
-import java.util.Optional;
+import org.example.electradrivebackend.model.m2.Car;
 
 @Getter
 @Setter

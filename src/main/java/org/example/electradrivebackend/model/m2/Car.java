@@ -1,13 +1,8 @@
-package org.example.electradrivebackend.model;
+package org.example.electradrivebackend.model.m2;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.electradrivebackend.dto.SalesDto;
-
-import java.text.DateFormat;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
 
 @Getter
 @Setter
