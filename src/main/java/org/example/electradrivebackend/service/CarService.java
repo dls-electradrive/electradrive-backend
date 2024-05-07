@@ -30,6 +30,7 @@ public class CarService {
         rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, car);
     }
 
+    
     public List<CarResponse> getAllCars() {
         System.out.println();
         System.out.println(carRepository.findAll());
