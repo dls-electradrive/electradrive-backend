@@ -19,41 +19,36 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "org.example.electradrivebackend.repository.customerrepo",
-        entityManagerFactoryRef = "entityManagerFactoryCar",
-        transactionManagerRef = "transactionManagerCar"
+        basePackages = "org.example.electradrivebackend.repository.carrepo",
+        entityManagerFactoryRef = "entityManagerFactoryCustomer",
+        transactionManagerRef = "transactionManagerCustomer"
 )
 public class DataSourceConfigCar {
 
-
-    @Bean(name = "dataSource1")
-    @ConfigurationProperties(prefix = "electradrive.datasource")
-    public DataSource dataSource1() {
+    @ConfigurationProperties(prefix = "carstorage.datasource")
+    @Bean(name = "dataSource2")
+    public DataSource dataSource2() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3307/electradrive?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+        config.setJdbcUrl("jdbc:mysql://localhost:3307/carstorage?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         config.setUsername("root");
         config.setPassword("12345");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return new HikariDataSource(config);
     }
 
-
-    @Bean(name = "entityManagerFactory1")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory1(DataSource dataSource1) {
+    @Bean(name = "entityManagerFactory2")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory2(DataSource dataSource2) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource1);
-        em.setPackagesToScan("org.example.electradrivebackend.model.customermodel");
+        em.setDataSource(dataSource2);
+        em.setPackagesToScan("org.example.electradrivebackend.model.carmodel");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "update");
         return em;
     }
 
-
-    @Bean(name = "transactionManagerCar")
-    public PlatformTransactionManager transactionManager1(EntityManagerFactory entityManagerFactory1) {
-        return new JpaTransactionManager(entityManagerFactory1);
+    @Bean(name = "transactionManagerCustomer")
+    public PlatformTransactionManager transactionManager2(EntityManagerFactory entityManagerFactory2) {
+        return new JpaTransactionManager(entityManagerFactory2);
     }
 }
-
