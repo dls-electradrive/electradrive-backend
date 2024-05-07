@@ -23,7 +23,7 @@ import javax.sql.DataSource;
         entityManagerFactoryRef = "entityManagerFactory1",
         transactionManagerRef = "transactionManager1"
 )
-public class DataSourceConfig1 {
+public class DataSourceConfigCar {
 
 
     @Bean(name = "dataSource1")
