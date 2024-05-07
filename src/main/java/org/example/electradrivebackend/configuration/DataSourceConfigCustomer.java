@@ -20,15 +20,15 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(
         basePackages = "org.example.electradrivebackend.repository.customerrepo",
-        entityManagerFactoryRef = "entityManagerFactoryCar",
-        transactionManagerRef = "transactionManagerCar"
+        entityManagerFactoryRef = "entityManagerFactoryCustomer",
+        transactionManagerRef = "transactionManagerCustomer"
 )
 public class DataSourceConfigCustomer {
 
 
-    @Bean(name = "dataSource1")
+    @Bean(name = "dataSourceCustomer")
     @ConfigurationProperties(prefix = "electradrive.datasource")
-    public DataSource dataSource1() {
+    public DataSource dataSourceCustomer() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://localhost:3307/electradrive?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         config.setUsername("root");
@@ -38,12 +38,11 @@ public class DataSourceConfigCustomer {
     }
 
 
-    @Bean(name = "entityManagerFactory1")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory1(DataSource dataSource1) {
+    @Bean(name = "entityManagerFactoryCustomer")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryCustomer(DataSource dataSourceCustomer) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource1);
+        em.setDataSource(dataSourceCustomer);
         em.setPackagesToScan("org.example.electradrivebackend.model.customermodel");
-
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "update");
@@ -51,9 +50,9 @@ public class DataSourceConfigCustomer {
     }
 
 
-    @Bean(name = "transactionManagerCar")
-    public PlatformTransactionManager transactionManager1(EntityManagerFactory entityManagerFactory1) {
-        return new JpaTransactionManager(entityManagerFactory1);
+    @Bean(name = "transactionManagerCustomer")
+    public PlatformTransactionManager transactionManagerCustomer(EntityManagerFactory entityManagerFactoryCustomer) {
+        return new JpaTransactionManager(entityManagerFactoryCustomer);
     }
 }
 
