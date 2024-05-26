@@ -30,7 +30,7 @@ public class DataSourceConfigCustomer {
     @ConfigurationProperties(prefix = "electradrive.datasource")
     public DataSource dataSourceCustomer() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3307/electradrive?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/electradrive?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         config.setUsername("root");
         config.setPassword("12345");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
