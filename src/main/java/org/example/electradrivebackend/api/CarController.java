@@ -8,7 +8,6 @@ import reactor.core.publisher.Flux;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api/cars")
 public class CarController {
