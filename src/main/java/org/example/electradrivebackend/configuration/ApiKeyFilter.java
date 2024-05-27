@@ -31,7 +31,7 @@ public class ApiKeyFilter implements Filter {
         }
 
         String apiKey = httpRequest.getHeader(API_KEY_HEADER);
-        System.out.println("API Key from request: " + apiKey);
+        System.out.println("\n API Key from request: " + apiKey);
 
         if (API_KEY != null && API_KEY.equals(apiKey)) {
             System.out.println("API Key is valid.");
