@@ -29,7 +29,7 @@ public class DataSourceConfigCar {
     @Bean(name = "dataSourceCar")
     public DataSource dataSourceCar() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3307/carstorage?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+        config.setJdbcUrl("jdbc:mysql://host.docker.internal:3307/carstorage?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         config.setUsername("root");
         config.setPassword("12345");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
