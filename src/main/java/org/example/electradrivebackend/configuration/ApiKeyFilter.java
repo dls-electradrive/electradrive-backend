@@ -12,8 +12,9 @@ import java.io.IOException;
 
 public class ApiKeyFilter implements Filter {
 
-    private static final String API_KEY = "PgI0SiQTB0F2RwTJkyVAOLVzUkSE95007OxtQSSaD0I";
     private static final String API_KEY_HEADER = "Authorization";
+    private static final String API_KEY = System.getenv("API_KEY");
+    private static final String CORS_ORIGIN = System.getenv("CORS_ORIGIN");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -24,7 +25,7 @@ public class ApiKeyFilter implements Filter {
         // Allow preflight requests to pass through
         if (httpRequest.getMethod().equalsIgnoreCase("OPTIONS")) {
             httpResponse.setStatus(HttpServletResponse.SC_OK);
-            httpResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+            httpResponse.setHeader("Access-Control-Allow-Origin", CORS_ORIGIN);
             httpResponse.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
             httpResponse.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
             return;

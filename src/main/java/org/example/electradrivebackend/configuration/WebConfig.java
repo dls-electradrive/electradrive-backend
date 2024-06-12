@@ -9,6 +9,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 @Configuration
 public class WebConfig {
 
+    private static final String CORS_ORIGIN = System.getenv("CORS_ORIGIN");
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -16,7 +18,7 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 System.out.println("Applying CORS configuration.");
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOrigins(CORS_ORIGIN)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("Authorization, Content-Type")
                         .allowCredentials(true);

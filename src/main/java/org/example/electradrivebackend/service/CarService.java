@@ -30,7 +30,6 @@ public class CarService {
 
 
     public List<CarResponse> getAllCars() {
-        System.out.println();
         System.out.println(carRepository.findAll());
         return carRepository.findAll().stream()
                 .map(car -> new CarResponse(car))

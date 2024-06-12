@@ -1,7 +1,7 @@
 package org.example.electradrivebackend.configuration;
 
 import jakarta.persistence.EntityManagerFactory;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -18,37 +18,41 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(
-        basePackages = "org.example.electradrivebackend.repository.carrepo",
-        entityManagerFactoryRef = "entityManagerFactoryCar",
-        transactionManagerRef = "transactionManagerCar"
-)
-public class DataSourceConfigCar {
+@EnableJpaRepositories(basePackages = "org.example.electradrivebackend.repository")
+public class DataSourceConfig {
 
-    @ConfigurationProperties(prefix = "carstorage.datasource")
-    @Bean(name = "dataSourceCar")
-    public DataSource dataSourceCar() {
+    @Value("${JDBC_URL}")
+    private String jdbcUrl;
+
+    @Value("${DB_USERNAME}")
+    private String dbUsername;
+
+    @Value("${DB_PASSWORD}")
+    private String dbPassword;
+
+    @Bean
+    public DataSource dataSource() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/carstorage?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
-        config.setUsername("root");
-        config.setPassword("12345");
+        config.setJdbcUrl(jdbcUrl);
+        config.setUsername(dbUsername);
+        config.setPassword(dbPassword);
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return new HikariDataSource(config);
     }
 
-    @Bean(name = "entityManagerFactoryCar")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryCar(DataSource dataSourceCar) {
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSourceCar);
-        em.setPackagesToScan("org.example.electradrivebackend.model.carmodel");
+        em.setDataSource(dataSource);
+        em.setPackagesToScan("org.example.electradrivebackend.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         return em;
     }
 
-    @Bean(name = "transactionManagerCar")
-    public PlatformTransactionManager transactionManagerCar(EntityManagerFactory entityManagerFactoryCar) {
-        return new JpaTransactionManager(entityManagerFactoryCar);
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 }
