@@ -1,7 +1,6 @@
 package org.example.electradrivebackend.configuration;
 
 import jakarta.persistence.EntityManagerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -21,21 +20,16 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "org.example.electradrivebackend.repository")
 public class DataSourceConfig {
 
-    @Value("${JDBC_URL}")
-    private String jdbcUrl;
-
-    @Value("${DB_USERNAME}")
-    private String dbUsername;
-
-    @Value("${DB_PASSWORD}")
-    private String dbPassword;
+    private static final String JDBC_URL = "jdbc:mysql://electradrive-db.mysql.database.azure.com:3306/electradrive?useSSL=true&requireSSL=false";
+    private static final String DB_USERNAME = "epicelectradrivename@electradrive-db";
+    private static final String DB_PASSWORD = "h76gt%fghyt";
 
     @Bean
     public DataSource dataSource() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(jdbcUrl);
-        config.setUsername(dbUsername);
-        config.setPassword(dbPassword);
+        config.setJdbcUrl(JDBC_URL);
+        config.setUsername(DB_USERNAME);
+        config.setPassword(DB_PASSWORD);
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return new HikariDataSource(config);
     }
