@@ -13,8 +13,8 @@ import java.io.IOException;
 public class ApiKeyFilter implements Filter {
 
     private static final String API_KEY_HEADER = "Authorization";
-    private static final String API_KEY = System.getenv("API_KEY");
-    private static final String CORS_ORIGIN = System.getenv("CORS_ORIGIN");
+    private static final String API_KEY = ("PgI0SiQTB0F2RwTJkyVAOLVzUkSE95007OxtQSSaD0I");
+    private static final String CORS_ORIGIN = "https://icy-forest-0d018a503.5.azurestaticapps.net";
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

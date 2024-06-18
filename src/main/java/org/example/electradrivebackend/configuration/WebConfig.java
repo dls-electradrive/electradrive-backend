@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 @Configuration
 public class WebConfig {
 
-    private static final String CORS_ORIGIN = System.getenv("CORS_ORIGIN");
+    private static final String CORS_ORIGIN = "https://icy-forest-0d018a503.5.azurestaticapps.net";
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
