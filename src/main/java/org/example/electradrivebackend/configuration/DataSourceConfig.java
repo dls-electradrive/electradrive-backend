@@ -21,10 +21,10 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
 
     private static final String JDBC_URL = "jdbc:mysql://electradrive-db.mysql.database.azure.com:3306/electradrive?useSSL=true&requireSSL=false";
-    private static final String DB_USERNAME = "epicelectradrivename@electradrive-db";
+    private static final String DB_USERNAME = "epicelectradrivename";
     private static final String DB_PASSWORD = "h76gt%fghyt";
 
-    
+
     @Bean
     public DataSource dataSource() {
         HikariConfig config = new HikariConfig();
