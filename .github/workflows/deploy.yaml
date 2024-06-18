@@ -3,7 +3,7 @@ name: Deploy Spring Boot to Azure Web App
 on:
   push:
     branches:
-      - main
+      - deploymentbranch
 
 jobs:
   build-and-deploy:
